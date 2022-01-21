@@ -3,43 +3,35 @@ import './App.css';
 import { BrowserRouter, Link, Route, Routes, Switch } from 'react-router-dom';
 import { AboutPage } from './routes/about';
 import { LoginRoute } from './routes/login';
+import { ChakraProvider } from '@chakra-ui/react';
+import { NavBar } from './components/Navbar';
+import { Home } from './routes/home';
 
 function App() {
   return (
-    <div className="App">
-            <BrowserRouter>
-
-      <div style={{
-        display: "flex",
-        justifyContent:"space-around"
-}}>
-        <Link to="/home"> Home Page</Link>
-        <Link to="/about"> About Page</Link>
-        <Link to="/login"> Login Page</Link>
-
+    <ChakraProvider>
+      <div className="App">
+        <AppData />
       </div>
+    </ChakraProvider>
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="about" element={<AboutPage />} />
-          <Route path="login" element={<LoginRoute />} />
-
-        </Routes>
-      </BrowserRouter>
-    </div>
   );
 }
 
 
-export const Home = props => {
+const AppData = props => {
   return (
-    <div style={{ padding: 10 }}>
-      <h5>Home</h5>
-
-
-
-    </div>
+    <BrowserRouter>
+     <NavBar/>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="about" element={<AboutPage />} />
+        <Route path="login" element={<LoginRoute />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
+
+
 
 export default App;
